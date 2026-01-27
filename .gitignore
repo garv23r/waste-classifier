@@ -1,0 +1,11 @@
+# Datasets (do not upload to GitHub)
+dataset/
+datasets/
+data/
+
+# Archives
+*.zip
+
+# Python cache (good practice)
+__pycache__/
+*.pyc
