@@ -1,25 +1,36 @@
 import tensorflow as tf
-from data_loader import get_dataset
-from sklearn.metrics import classification_report
 import numpy as np
+import json
+from sklearn.metrics import classification_report, confusion_matrix
+from data_loader import get_datasets
 
 DATASET_DIR = "dataset"
 MODEL_PATH = "models/waste_classifier.h5"
-BATCH_SIZE = 16
+BATCH_SIZE = 32
 
-# Load model
+# Load trained model
 model = tf.keras.models.load_model(MODEL_PATH)
 
-# Load test dataset (no shuffle)
-test_ds, class_names = get_dataset(DATASET_DIR, batch_size=BATCH_SIZE, shuffle=False)
+# Load validation dataset ONLY
+_, val_ds, class_names = get_datasets(
+    DATASET_DIR,
+    batch_size=BATCH_SIZE
+)
 
-# Predict
-y_true, y_pred = [], []
+# Optional safety: load saved class names instead
+# with open("class_names.json") as f:
+#     class_names = json.load(f)
 
-for imgs, labels in test_ds:
-    preds = model.predict(imgs, verbose=0)
+y_true = []
+y_pred = []
+
+for images, labels in val_ds:
+    predictions = model.predict(images, verbose=0)
     y_true.extend(labels.numpy())
-    y_pred.extend(np.argmax(preds, axis=1))
+    y_pred.extend(np.argmax(predictions, axis=1))
 
-print("\nClassification Report:\n")
+print("\n📊 Classification Report\n")
 print(classification_report(y_true, y_pred, target_names=class_names))
+
+print("\n🧩 Confusion Matrix\n")
+print(confusion_matrix(y_true, y_pred))
