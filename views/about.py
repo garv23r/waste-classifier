@@ -25,12 +25,6 @@ def about_page():
             margin-bottom: 25px;
         }
         
-        .vision-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
         .contact-pill {
             display: inline-block;
             background: rgba(74, 222, 128, 0.1);
@@ -46,6 +40,23 @@ def about_page():
         .contact-pill:hover {
             background: rgba(74, 222, 128, 0.2);
             transform: translateY(-2px);
+            color: #4ade80;
+        }
+
+        .feedback-btn {
+            display: inline-block;
+            background: #4ade80;
+            color: #0f172a !important;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        .feedback-btn:hover {
+            background: #22c55e;
+            transform: scale(1.05);
         }
         </style>
     """, unsafe_allow_html=True)
@@ -105,13 +116,38 @@ def about_page():
             </div>
         """, unsafe_allow_html=True)
 
-    # --- Section 3: Circular Economy Diagram Placeholder ---
+    # --- Section 3: Circular Economy Model ---
     st.markdown("---")
     st.subheader("🔄 The Circular Economy Model")
-    st.info("EcoVision follows the circular economy principle: Reduce, Reuse, and then Recycle correctly.")
-    
 
-    # --- Section 4: Contact Footer ---
+    st.info("EcoVision follows the circular economy principle: Reduce, Reuse, and then Recycle correctly.")
+
+    # --- Section 4: Embedded Feedback Form ---
+    st.markdown("---")
+    st.markdown("<h2 style='color: #4ade80; text-align: center;'>⭐ Share Your Feedback</h2>", unsafe_allow_html=True)
+    
+    # The Google Forms Embed Link
+    # Note: I've added /viewform?embedded=true to your URL
+    form_url = "https://docs.google.com/forms/d/e/1FAIpQLSdSJ2P85gewLgld7LaQuRzsJaVkHN-mQASSpae0PjFOUooQcA/viewform"
+    
+    html_code = f"""
+        <div style="display: flex; justify-content: center;">
+            <iframe src="{form_url}" 
+                width="100%" 
+                height="800" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0"
+                style="background: rgba(255,255,255,0.05); border-radius: 15px; border: 1px solid rgba(74, 222, 128, 0.3);">
+                Loading…
+            </iframe>
+        </div>
+    """
+    
+    # Render the IFrame
+    st.components.v1.html(html_code, height=850, scrolling=True)
+
+    # --- Section 5: Contact Footer ---
     st.markdown("""
         <div class="about-card" style="text-align: center; border-top: 4px solid #4ade80;">
             <h2 style="color: white;">📬 Get In Touch</h2>
