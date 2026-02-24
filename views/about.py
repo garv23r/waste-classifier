@@ -86,8 +86,7 @@ def about_page():
                     the conceptual framework that ensures the AI serves local environmental goals.
                 </p>
                 <p style="color: #f59e0b; font-size: 0.85rem; font-style: italic; margin-top: 10px; padding: 8px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; display: inline-block;">
-                    🔒 The name of this student researcher will be revealed once our community pilot 
-                    collects sufficient user feedback. Stay tuned!
+                    🔒 The name of this student researcher will be revealed once we collect sufficient user feedback. Stay tuned!
                 </p>
             </div>
             <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
